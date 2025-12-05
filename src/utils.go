@@ -2,8 +2,11 @@ package src
 
 import (
 	"fmt"
+	"regexp"
 	"strings"
 )
+
+var r = regexp.MustCompile(`(\.rar|\.r\d\d|\.s\d\d|\.t\d\d|\.u\d\d|\.v\d\d)$`)
 
 //Checks if the NZB file is .gz using its extension.
 func IsGzip(path string) bool {
@@ -16,6 +19,12 @@ func IsGzip(path string) bool {
 func IsPar2(file *File) bool {
 	return strings.Contains(file.Subject, ".par2")
 }
+
+//Checks if a file is a .rar file using its extension.
+func IsRar(file *File) bool {
+	return r.MatchString(strings.ToLower(file.Subject))
+}
+
 
 //Retrieves the splice of File objects included in the NZB. Synonymous with nzb.Files.
 func GetFiles(nzb *Nzb) []File {
