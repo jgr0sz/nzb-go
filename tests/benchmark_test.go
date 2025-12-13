@@ -24,7 +24,7 @@ func OldFnameSearch (r *regexp.Regexp, file src.File) (string, int) {
 
 func BenchmarkFilenameSearch(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		sinkString, sinkInt = src.FilenameSearch(re, nzb.Files[0])
+		sinkString = src.FilenameSearch(re, nzb.Files[0])
 	}
 }
 

@@ -1,6 +1,6 @@
 package src
 
-//Function that retrieves the value of "category" if it exists; else, it returns an empty string.
+//Retrieves the value of "category" if it exists; else, it returns an empty string.
 func Category(meta []Meta) string {
 	for _, m := range meta {
 		if m.Type == "category" {
@@ -10,7 +10,7 @@ func Category(meta []Meta) string {
 	return ""
 }
 
-//Function that retrieves the value of "password" attributes if they exist.
+//Retrieves the value of "password" attributes if they exist.
 func Passwords(meta []Meta) []string {
 	var passwordSplice []string 
 	for _, m := range meta {
@@ -21,7 +21,7 @@ func Passwords(meta []Meta) []string {
 	return passwordSplice
 }
 
-//Function that retrieves the value of "tag" attributes if they exist.
+//Retrieves the value of "tag" attributes if they exist.
 func Tags(meta []Meta) []string {
 	var tagSplice []string 
 	for _, m := range meta {
@@ -32,7 +32,7 @@ func Tags(meta []Meta) []string {
 	return tagSplice
 }
 
-//Function that retrieves the value of a "title" attribute if it exists; else, it returns an empty string.
+//Retrieves the value of a "title" attribute if it exists; else, it returns an empty string.
 func Title(meta []Meta) string {
 	for _, m := range meta {
 		if m.Type == "title" {

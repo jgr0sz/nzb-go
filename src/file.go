@@ -30,7 +30,7 @@ var OBFUSCATION_PATTERNS = []*regexp.Regexp {
 	regexp.MustCompile(`^abc\.xyz`),
 }
 
-//Function to convert and retrieve the Unix-timestamped File field into UTC format.
+//Converts and retrieves the Unix-timestamped File field into UTC format.
 func DatePosted(file File) time.Time {
 	return time.Unix(file.Date, 0).UTC()
 }
@@ -44,31 +44,30 @@ func FileSize(file File) int {
 	return segmentByteSize
 }
 
-//Function that uses a precompiled regex to search for a filename, will return it and its length, otherwise an empty string and int.
-func FilenameSearch(r *regexp.Regexp, file File) (string, int){
+//Helper func that when using a precompiled regex to search for a filename, returns it and its length, otherwise an empty string and int.
+func FilenameSearch(r *regexp.Regexp, file File) (string){
 	//We take the pattern and see if there's a match.
 	filenameResult := r.FindStringSubmatch(file.Subject)
 	if filenameResult == nil {
-		return "", 0
+		return ""
 	}
-	//Assuming there is one, we trim out the filename of our first match, returning it and its length.
-	trimmedFilename := strings.TrimSpace(filenameResult[1])
-	return trimmedFilename, len(trimmedFilename)
+	//Assuming there is one, we return it and its length.
+	return filenameResult[1]
 }
 
-//Function that searches for a filename within a subject. https://github.com/Ravencentric/nzb/blob/aa5d11dfed61b49b3b3ed5c00226b88fad7e591b/src/nzb/_subparsers.py#L24-46 for more info.
+//Searches for a filename within a subject. https://github.com/Ravencentric/nzb/blob/aa5d11dfed61b49b3b3ed5c00226b88fad7e591b/src/nzb/_subparsers.py#L24-46 for more info.
 func ExtractFilename(file File) string {
 	//Using the global var of precompiled regex patterns, we iterate through and apply a filename search, seeing if we get a filename back, otherwise an empty string.
 	for _, Fname := range EXTRACTION_PATTERNS {
-		filename, length := FilenameSearch(Fname, file)
-		if length > 0 {
-			return filename
+		filename := FilenameSearch(Fname, file)
+		if len(filename) != 0 {
+			return strings.TrimSpace(filename)
 		}
 	}
 	return ""
 }
 
-//Function that splits a filename into two components: a stem and an extension. If no valid extension was found, return only the filename, it being a stem. 
+//Splits a filename into two components: a stem and an extension. If no valid extension was found, return only the filename, it being a stem. 
 func SplitFilename(filename string) (string, string) {
 	//Extracting the index, splitIndexes is constructed like this:
 	//[fullStart, fullEnd, group1Start, group1End, group2Start...], where groups are the leftmost submatches and full is the entire string matched.
@@ -81,7 +80,7 @@ func SplitFilename(filename string) (string, string) {
 	return stem, extension
 }
 
-//Function that determines if a file stem is likely obfuscated or not. Relies on collected SplitFilename() output.
+//Determines if a file stem is likely obfuscated or not. Relies on collected SplitFilename() output.
 //More info: https://github.com/sabnzbd/sabnzbd/blob/297455cd35c71962d39a36b7f99622f905d2234e/sabnzbd/deobfuscate_filenames.py#L104
 
 func IsObfuscated(stem string) bool {
@@ -164,7 +163,7 @@ func IsObfuscated(stem string) bool {
 	return true
 }
 
-//Function that determines whether a file extension is present within a filename or not. Case and dot insensitive.
+//Determines whether a file extension is present within a filename or not. Case and dot insensitive.
 func HasExtension(file File, ext string) bool {
 	//Extracting a filename first, then acquiring the extension from splitting it
 	_, fileExtension := SplitFilename(ExtractFilename(file))
