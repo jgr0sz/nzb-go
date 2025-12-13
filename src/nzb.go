@@ -15,6 +15,18 @@ import (
 	Central set of functions meant to aid in the parsing of NZBs.
 */
 
+//Takes and instantiates an Nzb from a provided string.
+func FromStr(nzbString string) (*Nzb, error) {
+	var strNzb Nzb
+	err := xml.Unmarshal([]byte(nzbString), &strNzb)
+
+	if err != nil {
+		log.Printf("Unable to unmarshal string data for parsing: %v", err)
+		return nil, err
+	}
+	return &strNzb, err
+}
+
 //Takes and instantiates an Nzb from a JSON file.
 func FromJSON(jsonData []byte) (*Nzb, error) {
 	var jsonNzb Nzb
