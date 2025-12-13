@@ -29,10 +29,12 @@ func FileSize(file File) int {
 
 //Function that uses a precompiled regex to search for a filename, will return it and its length, otherwise an empty string and int.
 func FilenameSearch(r *regexp.Regexp, file File) (string, int){
-    if r.MatchString(file.Subject) {
-        return strings.TrimSpace(r.FindStringSubmatch(file.Subject)[1]), len(strings.TrimSpace(r.FindStringSubmatch(file.Subject)[1]))
-    }
-    return "", len("")
+	filenameResult := r.FindStringSubmatch(file.Subject)
+	if filenameResult == nil {
+		return "", 0
+	}
+	trimmedFilename := strings.TrimSpace(filenameResult[1])
+	return trimmedFilename, len(trimmedFilename)
 }
 
 //Function that searches for a filename within a subject. https://github.com/Ravencentric/nzb/blob/aa5d11dfed61b49b3b3ed5c00226b88fad7e591b/src/nzb/_subparsers.py#L24-46 for more info.
