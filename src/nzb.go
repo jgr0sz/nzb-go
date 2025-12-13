@@ -173,3 +173,13 @@ func Par2_Size(nzb *Nzb) int {
 func Par2_percentage(nzb *Nzb) float64 {
 	return float64(Par2_Size(nzb))/ float64(Size(nzb))
 }
+
+//Serializes an Nzb instance into a JSON string.
+func ToJSON(nzb *Nzb) string {
+	NzbJSON, err := json.MarshalIndent(nzb, "", "  ")
+	if err != nil {
+		log.Printf("Unable to marshal Nzb instance to JSON: %v", err)
+		return ""
+	}
+	return string(NzbJSON)
+}

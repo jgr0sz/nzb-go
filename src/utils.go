@@ -39,7 +39,7 @@ func GroupName(file *File) []string {
 func ToString(nzb *Nzb) {
 	//Prints out NZB metadata, if any.
 	fmt.Println("=== META ===")
-	for _, m := range nzb.Meta {
+	for _, m := range nzb.Head.Meta {
 		fmt.Printf("%s: %s\n", m.Type, m.Value)
 	}
 

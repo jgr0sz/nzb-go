@@ -30,4 +30,6 @@ func main() {
 	for _, f := range filenames {
 		fmt.Printf("The full list of this NZB's filenames are: %s\n", f)
 	}
+
+	fmt.Printf("Here is our nzb in JSON we can use here in the future: \n%s", src.ToJSON(nzb))
 }
