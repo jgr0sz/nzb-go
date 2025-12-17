@@ -1,4 +1,4 @@
-package src
+package parser
 
 /*
 	Custom structs used to reflect the composition of NZBs.

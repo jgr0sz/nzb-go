@@ -1,21 +1,20 @@
 package main
 
 import (
-	"jgr0sz/nzbgo/src"
+	"jgr0sz/nzbgo/parser"
 	"regexp"
 	"strings"
 	"testing"
 )
 
-
 var (
-	nzb, _ = src.FromFile("big_buck_bunny.nzb")
+	nzb, _ = parser.FromFile("big_buck_bunny.nzb")
 	re = regexp.MustCompile(`^(?:\[|\()(?:\d+/\d+)(?:\]|\))\s-\s(.*)\syEnc\s(?:\[|\()(?:\d+/\d+)(?:\]|\))\s\d+`)
 	sinkString string
 	sinkInt int
 )
 
-func OldFnameSearch (r *regexp.Regexp, file src.File) (string, int) {
+func OldFnameSearch (r *regexp.Regexp, file parser.File) (string, int) {
 	    if r.MatchString(file.Subject) {
         return strings.TrimSpace(r.FindStringSubmatch(file.Subject)[1]), len(strings.TrimSpace(r.FindStringSubmatch(file.Subject)[1]))
     }
@@ -24,7 +23,7 @@ func OldFnameSearch (r *regexp.Regexp, file src.File) (string, int) {
 
 func BenchmarkFilenameSearch(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		sinkString = src.FilenameSearch(re, nzb.Files[0])
+		sinkString = parser.FilenameSearch(re, nzb.Files[0])
 	}
 }
 

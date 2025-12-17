@@ -1,4 +1,5 @@
-package src
+// The parser package allows for the parsing of important kinds of information contained within an NZB.
+package parser
 
 import (
 	"bytes"

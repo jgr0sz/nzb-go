@@ -1,4 +1,4 @@
-package src
+package parser
 
 //Retrieves the value of "category" if it exists; else, it returns an empty string.
 func Category(meta []Meta) string {
