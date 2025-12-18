@@ -6,7 +6,7 @@ import (
 )
 
 func editortest() {
-	editor, err := metaeditor.From_file("tests/meta_editor.nzb")
+	editor, err := metaeditor.From_file("tests/nzbs/meta_editor.nzb")
 
 	if err != nil {
 		return
