@@ -5,7 +5,7 @@ import (
 	"jgr0sz/nzbgo/parser"
 )
 
-func parsertest() {
+func parserTest() {
 	nzb, err := parser.FromFile("tests/nzbs/big_buck_bunny.nzb")
 	if err != nil {
 		fmt.Printf("Error parsing NZB. %v\n", err)
