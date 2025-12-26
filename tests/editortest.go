@@ -20,5 +20,19 @@ func editorTest() {
 	metaeditor.Append(editor, "password", "12345")
 	printEditor()
 	metaeditor.Remove(editor, "password")
+	metaeditor.Append(editor, "password", "foobar!")
 	printEditor()
+	metaeditor.Sort(editor, nil)
+
+	var customPattern = map[string]int {
+		"password": 0,
+		"title": 1,
+		"category": 2, 
+		"tag": 3,
+	}
+	
+	metaeditor.Sort(editor, customPattern)
+	printEditor()
+	metaeditor.ToFile(editor, "tests/nzbs/samplenzb.nzb", true)
+	fmt.Printf("%s", metaeditor.ToStr(editor))
 }
