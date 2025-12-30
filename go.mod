@@ -1,3 +1,3 @@
-module jgr0sz/nzbgo
+module github.com/jgr0sz/nzbgo
 
 go 1.24

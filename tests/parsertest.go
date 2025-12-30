@@ -2,7 +2,8 @@ package main
 
 import (
 	"fmt"
-	"jgr0sz/nzbgo/parser"
+
+	"github.com/jgr0sz/nzbgo/parser"
 )
 
 func parserTest() {

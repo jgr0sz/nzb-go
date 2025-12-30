@@ -2,7 +2,8 @@ package main
 
 import (
 	"fmt"
-	"jgr0sz/nzbgo/metaeditor"
+
+	"github.com/jgr0sz/nzbgo/metaeditor"
 )
 
 func editorTest() {

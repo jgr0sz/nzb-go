@@ -1,10 +1,11 @@
 package main
 
 import (
-	"jgr0sz/nzbgo/parser"
 	"regexp"
 	"strings"
 	"testing"
+
+	"github.com/jgr0sz/nzbgo/parser"
 )
 
 var (

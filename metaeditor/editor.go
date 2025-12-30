@@ -2,13 +2,14 @@ package metaeditor
 
 import (
 	"encoding/xml"
-	"jgr0sz/nzbgo/parser"
 	"log"
 	"os"
 	"path/filepath"
 	"slices"
 	"sort"
 	"strings"
+
+	"github.com/jgr0sz/nzbgo/parser"
 )
 
 /*
