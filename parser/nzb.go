@@ -102,8 +102,6 @@ func MainFile(nzb *Nzb) File {
 	return nzb.Files[mainFileIdx]
 }
 
-//TODO: see if more efficient methods exist
-
 //Retrieves the splice of unique posters of an NZB's Files[] field.
 func Posters(nzb *Nzb) []string {
 	postersSlice := []string{}

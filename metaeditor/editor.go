@@ -1,5 +1,4 @@
 // Allows for the idiomatic modification of NZB metadata fields, particularly useful when dealing with automated systems reliant on it.
-
 package metaeditor
 
 import (
@@ -13,10 +12,6 @@ import (
 
 	"github.com/jgr0sz/nzbgo/parser"
 )
-
-/*
-	Central set of functions for NZB metadata editing. Note that operation
-*/
 
 //Takes and instantiates an NzbMetaEditor object from a file path.
 func From_file(path string) (*NzbMetaEditor, error) {

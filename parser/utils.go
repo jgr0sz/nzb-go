@@ -6,6 +6,7 @@ import (
 	"strings"
 )
 
+//Precompiled regex to determine if a file has a .rar extension.
 var rarPattern = regexp.MustCompile(`(\.rar|\.r\d\d|\.s\d\d|\.t\d\d|\.u\d\d|\.v\d\d)$`)
 
 //Checks if the NZB file is .gz using its extension.

@@ -83,7 +83,6 @@ func SplitFilename(filename string) (string, string) {
 
 //Determines if a file stem is likely obfuscated or not. Relies on collected SplitFilename() output.
 //More info: https://github.com/sabnzbd/sabnzbd/blob/297455cd35c71962d39a36b7f99622f905d2234e/sabnzbd/deobfuscate_filenames.py#L104
-
 func IsObfuscated(stem string) bool {
 	//In the case where no stem exists
 	if stem == "" {
